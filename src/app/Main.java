@@ -1,23 +1,21 @@
 package app;
 
-import engine.TurnManager;
-import model.Player;
-
-import java.util.Arrays;
-import java.util.List;
+import exception.InvalidMoveException;
+import exception.GameOverException;
 
 public class Main {
     public static void main(String[] args) {
 
-        Player p1 = new Player(1, "Player1", 'X');
-        Player p2 = new Player(2, "Player2", 'O');
+        try {
+            throw new InvalidMoveException("Invalid move test");
+        } catch (InvalidMoveException e) {
+            System.out.println("Caught Exception: " + e.getMessage());
+        }
 
-        List<Player> players = Arrays.asList(p1, p2);
-
-        TurnManager turnManager = new TurnManager(players);
-
-        System.out.println("Current Player: " + turnManager.getCurrentPlayer());
-        turnManager.nextTurn();
-        System.out.println("Next Player: " + turnManager.getCurrentPlayer());
+        try {
+            throw new GameOverException("Game over test");
+        } catch (GameOverException e) {
+            System.out.println("Caught Exception: " + e.getMessage());
+        }
     }
 }
