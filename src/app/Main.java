@@ -1,8 +1,10 @@
 package app;
 
+import engine.TurnManager;
 import model.Player;
-import model.Move;
-import model.GameState;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,10 +12,12 @@ public class Main {
         Player p1 = new Player(1, "Player1", 'X');
         Player p2 = new Player(2, "Player2", 'O');
 
-        Move move = new Move(p1, 1, 2);
+        List<Player> players = Arrays.asList(p1, p2);
 
-        System.out.println(p1);
-        System.out.println("Move at: " + move.getRow() + "," + move.getCol());
-        System.out.println("Game State: " + GameState.ONGOING);
+        TurnManager turnManager = new TurnManager(players);
+
+        System.out.println("Current Player: " + turnManager.getCurrentPlayer());
+        turnManager.nextTurn();
+        System.out.println("Next Player: " + turnManager.getCurrentPlayer());
     }
 }
