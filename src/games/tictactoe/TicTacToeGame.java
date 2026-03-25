@@ -52,6 +52,24 @@ public class TicTacToeGame extends Game {
         if (winnerPlayer != null) {
             gameState = GameState.WIN;
             winner = winnerPlayer;
+            return;
         }
+
+        if (isBoardFull()) {
+            gameState = GameState.DRAW;
+            return;
+        }
+    }
+    private boolean isBoardFull() {
+        char[][] grid = board.getGrid();
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (grid[i][j] == '-') {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
